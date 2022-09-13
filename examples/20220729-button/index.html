@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>悬停边框卷动效果按钮</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+    </style>
+
+    <style>
+        body {
+            display: flex;
+            background-color: #333333;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            width: 150px;
+            height: 50px;
+            margin: 20px;
+            /* 边框设置为solid后会继承下面color所设置的颜色 */
+            border: 3px solid;
+            background: none;
+            font-size: 20px;
+        }
+
+        .btn:nth-child(1) {
+            color: #A3CB38;
+        }
+
+        .btn:nth-child(2) {
+            color: #ED4C67;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+    </style>
+
+    <style>
+        /* 这里的position=relative和下面的position=absolute用于方便滑块定位使用 */
+        .btn {
+            position: relative;
+        }
+
+        /* 使用::before和::after作为两个滑块 */
+        .btn::before,
+        .btn::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 3px;
+            /* 倾斜滑块 */
+            transform: skewX(45deg);
+            background: #333333;
+            /* 设置滑块位置变化过度动画 */
+            transition: 0.3s linear;
+        }
+
+        /* 定位滑块初始位置 */
+        .btn::before {
+            top: -3px;
+            left: 10%;
+        }
+
+        .btn::after {
+            bottom: -3px;
+            right: 10%;
+        }
+
+        /* 设置光标悬停后滑块位置 */
+        .btn:hover:before {
+            left: 80%;
+        }
+
+        .btn:hover:after {
+            right: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn">BUTTON</button>
+    <button class="btn">BUTTON</button>
+</body>
+
+</html>

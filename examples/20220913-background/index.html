@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>粒子飘落效果动画背景</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+    </style>
+
+    <style>
+        .bg {
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(#003010, #000000);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg>div {
+            position: absolute;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <!-- 内层div元素作为粒子(particle)
+        <div></div>
+        <div></div>
+        ... -->
+    </div>
+
+    <script>
+        const PARTICLE_SUM = 32; // 粒子总数量
+        const bg = document.querySelector(".bg");
+        const particle_style = document.createElement('style');
+        document.head.appendChild(particle_style);
+
+        for (let i = 0; i < PARTICLE_SUM; i++) {
+            // 创建粒子
+            particle = document.createElement("div");
+
+            // 下面设置粒子属性
+            let size = Math.random() * 4;
+            particle_style.sheet.insertRule(`
+                .bg>div:nth-child(${i + 1}) {
+                    top: ${Math.random() * 100}vh;
+                    left: ${Math.random() * 100}vw;
+                    width: ${size + 2}vh;
+                    height: ${size + 2}vh;
+                    background: rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, ${Math.random()});
+                    box-Shadow: 0 0 ${Math.random() * 6}vh rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, ${Math.random()});
+                    opacity: 0;
+                    animation: anime${i} 8s linear ${Math.random() * 8}s infinite;
+                }
+            `);
+
+            // 下面生成帧动画
+            let xoffsetbase = Math.random() * 5;
+            let yoffsetbase = Math.random() * 5 + 10;
+            particle_style.sheet.insertRule(`
+            @keyframes anime${i} {
+                0% { opacity: 0; translate: calc(${xoffsetbase - 2.5}vw) calc(${-yoffsetbase}vh); }
+                25% { opacity: 1; }
+                50% { opacity: 0; translate: 0 0; }
+                75% { opacity: 1; }
+                100% { opacity: 0; translate: calc(${xoffsetbase + 2.5}vw) calc(${yoffsetbase}vh); }
+            }
+            `);
+
+            // 将粒子插入到背景
+            bg.appendChild(particle);
+        }
+    </script>
+</body>
+
+</html>

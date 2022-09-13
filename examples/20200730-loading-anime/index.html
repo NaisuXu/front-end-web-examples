@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #323232;
+        }
+
+        .loading {
+            width: 300px;
+            height: 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .loading span {
+            border-radius: 50%;
+            margin: 20%;
+            background-color: red;
+        }
+
+        @keyframes anime-scale {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .loading span:nth-child(1) {
+            animation: anime-scale 2s infinite 0s;
+        }
+
+        .loading span:nth-child(2) {
+            animation: anime-scale 2s infinite 0.3s;
+        }
+
+        .loading span:nth-child(3) {
+            animation: anime-scale 2s infinite 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+
+</html>

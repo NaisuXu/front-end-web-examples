@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: lightgray;
+            user-select: none;
+        }
+
+        /* 时钟基本样式 */
+        .clock {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background-color: white;
+            display: grid;
+            place-items: center;
+        }
+
+        /* 时钟表盘样式 */
+        .clock .dial {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            /* 与下面position: absolute;配合使用，使下面元素都以本容器为父容器进行绝对定位 */
+            position: relative;
+        }
+
+        /* 中心点样式 */
+        .clock .dial .point {
+            position: absolute;
+            width: 8%;
+            height: 8%;
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        /* 表针样式 */
+        .clock .dial .hand {
+            position: absolute;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        .clock .dial .hand span:nth-child(1) {
+            background-color: black;
+        }
+
+        .clock .dial .hand.hour {
+            width: 4%;
+            height: 40%;
+        }
+
+        .clock .dial .hand.minute {
+            width: 2%;
+            height: 60%;
+        }
+
+        .clock .dial .hand.second {
+            width: 1%;
+            height: 80%;
+        }
+
+        /* 数字区域定位 */
+        .clock .dial .num {
+            position: absolute;
+            width: 100%;
+        }
+
+        .clock .dial .num:nth-child(1) {
+            transform: rotate(120deg);
+        }
+
+        .clock .dial .num:nth-child(2) {
+            transform: rotate(150deg);
+        }
+
+        .clock .dial .num:nth-child(3) {
+            transform: rotate(180deg);
+        }
+
+        .clock .dial .num:nth-child(4) {
+            transform: rotate(210deg);
+        }
+
+        .clock .dial .num:nth-child(5) {
+            transform: rotate(240deg);
+        }
+
+        .clock .dial .num:nth-child(6) {
+            transform: rotate(270deg);
+        }
+
+        .clock .dial .num:nth-child(7) {
+            transform: rotate(300deg);
+        }
+
+        .clock .dial .num:nth-child(8) {
+            transform: rotate(330deg);
+        }
+
+        .clock .dial .num:nth-child(9) {
+            transform: rotate(360deg);
+        }
+
+        .clock .dial .num:nth-child(10) {
+            transform: rotate(30deg);
+        }
+
+        .clock .dial .num:nth-child(11) {
+            transform: rotate(60deg);
+        }
+
+        .clock .dial .num:nth-child(12) {
+            transform: rotate(90deg);
+        }
+
+        /* 数字文本角度调整 */
+        .clock .dial .num span {
+            display: inline-block;
+            font-size: 2rem;
+        }
+
+        .clock .dial .num:nth-child(1) span {
+            transform: rotate(-120deg);
+        }
+
+        .clock .dial .num:nth-child(2) span {
+            transform: rotate(-150deg);
+        }
+
+        .clock .dial .num:nth-child(3) span {
+            transform: rotate(-180deg);
+        }
+
+        .clock .dial .num:nth-child(4) span {
+            transform: rotate(-210deg);
+        }
+
+        .clock .dial .num:nth-child(5) span {
+            transform: rotate(-240deg);
+        }
+
+        .clock .dial .num:nth-child(6) span {
+            transform: rotate(-270deg);
+        }
+
+        .clock .dial .num:nth-child(7) span {
+            transform: rotate(-300deg);
+        }
+
+        .clock .dial .num:nth-child(8) span {
+            transform: rotate(-330deg);
+        }
+
+        .clock .dial .num:nth-child(9) span {
+            transform: rotate(-360deg);
+        }
+
+        .clock .dial .num:nth-child(10) span {
+            transform: rotate(-30deg);
+        }
+
+        .clock .dial .num:nth-child(11) span {
+            transform: rotate(-60deg);
+        }
+
+        .clock .dial .num:nth-child(12) span {
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="dial">
+            <div class="num"><span>1</span></div>
+            <div class="num"><span>2</span></div>
+            <div class="num"><span>3</span></div>
+            <div class="num"><span>4</span></div>
+            <div class="num"><span>5</span></div>
+            <div class="num"><span>6</span></div>
+            <div class="num"><span>7</span></div>
+            <div class="num"><span>8</span></div>
+            <div class="num"><span>9</span></div>
+            <div class="num"><span>10</span></div>
+            <div class="num"><span>11</span></div>
+            <div class="num"><span>12</span></div>
+            <div class="point"></div>
+            <div class="hand hour" id="handhour"><span></span><span></span></div>
+            <div class="hand minute" id="handmin"><span></span><span></span></div>
+            <div class="hand second" id="handsec"><span></span><span></span></div>
+        </div>
+    </div>
+
+    <!-- 指针转动脚本 -->
+    <script>
+        var handhour = document.getElementById("handhour");
+        var handmin = document.getElementById("handmin");
+        var handsec = document.getElementById("handsec");
+
+        function change() {
+            var time = new Date();
+            handhour.style.transform = "rotate(" + ((time.getHours() % 12) * 30 + time.getMinutes() * 6 / 12) + "deg)";
+            handmin.style.transform = "rotate(" + time.getMinutes() * 6 + "deg)";
+            handsec.style.transform = "rotate(" + time.getSeconds() * 6 + "deg)"
+        }
+
+        change(); // 指针初次定位
+
+        setInterval(change, 1000); // 指针每秒转动一次
+    </script>
+</body>
+
+</html>

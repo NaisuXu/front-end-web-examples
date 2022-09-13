@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>文件转十六进制数组工具</title>
+    <script>
+        var hexstr = "";
+
+        function read(file) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                let filearr = new Uint8Array(this.result); // 将文件数据存储成字节数组
+                document.getElementById("showsize").innerHTML = filearr.length;
+                hexstr = "";
+                for (let i = 0; i < filearr.length; i++) {
+                    hexstr = hexstr + "0x" + (Array(2).join(0) + filearr[i].toString(16).toUpperCase()).slice(-2) + ", "; // 将字节数据转换成0xXX, 方式字符串
+                }
+                hexstr = hexstr.substring(0, hexstr.lastIndexOf(", ")); // 去掉最后的, 
+                document.getElementById("showarr").value = hexstr;
+            }
+            reader.readAsArrayBuffer(file); // 以数组方式读取
+        }
+
+        function copy() {
+            navigator.clipboard.writeText(hexstr).then(function () {
+                alert("复制成功！");
+            }, function () {
+                alert("复制失败！");
+            });
+        }
+    </script>
+</head>
+
+<body style="margin: 2rem;">
+    <h1>文件转十六进制数组工具</h1>
+    <input type="file" onchange="read(this.files[0])" />
+    <p>文件长度是：<span id="showsize"></span> （字节）</p>
+    <textarea id="showarr" style="overflow-y: scroll; width: 30rem; height: 15rem;"></textarea>
+    <br><button onclick="copy()">复制到剪贴板</button>
+</body>
+
+</html>

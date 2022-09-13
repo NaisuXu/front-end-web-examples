@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>十六进制字节数组转文件工具</title>
+    <script>
+        function clean() {
+            document.getElementById("txtarr").value = "";
+        }
+
+        function download() {
+            let txtarr = document.getElementById("txtarr").value.split(",");
+            let filearr = new Uint8Array(txtarr.length);
+            for (let i = 0; i < txtarr.length; i++) {
+                filearr[i] = parseInt(txtarr[i].replaceAll(" ", ""));
+            }
+
+            let file = new Blob([filearr], { type: "application/octet-stream" });
+
+            let downloadlink = document.createElement("a");
+            downloadlink.href = URL.createObjectURL(file)
+            downloadlink.download = document.getElementById("filename").value;
+            downloadlink.click();
+        }
+    </script>
+</head>
+
+<body style="margin: 2rem;">
+    <h1>十六进制字节数组转文件工具</h1>
+    <p>十六进制字节文件数据粘贴到下面：</p>
+    <textarea id="txtarr" style="overflow-y: scroll; width: 30rem; height: 15rem;"></textarea>
+    <br><br><button onclick="clean()">清空数据</button>
+    <br><br><span>文件名：</span><input type="text" id="filename"> <button onclick="download()">下载文件</button>
+</body>
+
+</html>

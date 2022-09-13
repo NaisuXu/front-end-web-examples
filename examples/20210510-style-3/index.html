@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            background-color: #e6e6e6;
+        }
+        .neumorphism label input {
+            appearance: none;
+        }
+        .neumorphism label div {
+            margin: 0.5rem;
+            display: inline-block;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background-color: #e6e6e6;
+            box-shadow: 0.2rem 0.2rem 0.6rem #c4c4c4, -0.2rem -0.2rem 0.6rem #ffffff;
+        }
+        /* 设置在input选中时其后面的div */
+        .neumorphism label input:checked+div {
+            box-shadow: inset 0.2rem 0.2rem 0.6rem #c4c4c4, inset -0.2rem -0.2rem 0.6rem #ffffff;
+        }
+        .neumorphism label div span {
+            display: block;
+            user-select: none;
+            color: #a6a6a6;
+            text-align: center;
+            line-height: 4rem;
+            transition: 0.1s;
+        }
+        .neumorphism label input:checked+div span {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="neumorphism">
+        <!-- label标签会将下面input和div绑定，选中div即选中input -->
+        <label>
+            <input type="radio" name="bool" />
+            <div>
+                <span>True</span>
+            </div>
+        </label>
+        <label>
+            <input type="radio" name="bool" />
+            <div>
+                <span>False</span>
+            </div>
+        </label>
+    </div>
+</body>
+</html>

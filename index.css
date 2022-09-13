@@ -1,0 +1,100 @@
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+html,
+body {
+    height: 100vh;
+}
+
+body {
+    background: #eeeeee;
+    display: grid;
+    grid-template-areas:
+        ". . . . ."
+        ". t t t ."
+        ". . . . ."
+        ". l . c ."
+        ". . . . .";
+    grid-template-columns: 5% 22.5% 2.5% 1fr 5%;
+    grid-template-rows: 5% 2.5rem 2.5% 1fr 5%;
+    
+}
+
+.title {
+    grid-area: t;
+    line-height: 2.5rem;
+    font-size: 2.5rem;
+}
+
+.list {
+    grid-area: l;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.list::-webkit-scrollbar {
+    width: 2px;
+    height: 100%;
+}
+
+.list::-webkit-scrollbar-track {
+    background: #dddddd;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background: #bbbbbb;
+}
+
+.list-node-split {
+    margin: 0.5rem 1rem 0.5rem 0rem;
+    height: 2px;
+    transform:scale(1 , 0.5);
+    background: #dddddd;
+}
+
+.list-node>input {
+    display: none;
+    appearance: none;
+}
+
+.list-node>div {
+    margin: 0.5rem 1rem 0.5rem 0rem;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.list-node>div:hover {
+    background: #dddddd;
+}
+
+.list-node>div>div:nth-child(1) {
+    font-size: 1.25rem;
+}
+
+.list-node>input:checked+div::after {
+     position: absolute;
+     content: "";
+     width: 0.5rem;
+     height: 100%;
+     top: 0;
+     right: 0;
+     background: #dddddd;
+}
+
+.examples {
+    grid-area: c;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem #333333;
+}

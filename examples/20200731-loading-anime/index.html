@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #323232;
+        }
+
+        @keyframes anime-rotate {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading {
+            width: 200px;
+            height: 200px;
+            animation: anime-rotate 2s infinite 0s;
+        }
+
+        .loading circle {
+            cx: 50%;
+            cy: 50%;
+            r: 40%;
+            stroke: red;
+            /* (r * 3.14) / 2 */
+            stroke-dasharray: 62.8%;
+            stroke-width: 6%;
+            stroke-linecap: round;
+            fill: none;
+        }
+    </style>
+</head>
+
+<body>
+    <svg class="loading">
+        <circle></circle>
+    </svg>
+</body>
+
+</html>

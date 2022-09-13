@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>点击涟漪效果按钮</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+    </style>
+
+    <style>
+        body {
+            display: flex;
+            background-color: #333333;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            width: 200px;
+            height: 80px;
+            margin: 20px;
+            border-radius: 40px;
+            border: none;
+            font-size: 30px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button:nth-child(1) {
+            background: linear-gradient(to right, #0365CA, #4FDEF8);
+        }
+
+        button:nth-child(2) {
+            background: linear-gradient(to right, #DD72AB, #F0B6DA);
+        }
+    </style>
+
+    <style>
+        /* button position=relative / span position=absolute 结合使用 */
+        button {
+            position: relative;
+            /* 隐藏button中超出button边界的元素 */
+            overflow: hidden;
+        }
+
+        /* 使用span元素作为水波 */
+        /* 点击按钮时会在点击位置生产水波 */
+        /* 水波生成后从小到大扩散 */
+        button span {
+            position: absolute;
+            background: white;
+            pointer-events: none;
+            border-radius: 50%;
+            /* 使水波中心点位置保持不变 */
+            transform: translate(-50%, -50%);
+            animation: animate 1s linear;
+        }
+
+        /* 尺寸和透明度动画效果 */
+        @keyframes animate {
+            0% {
+                width: 0px;
+                height: 0px;
+                opacity: 0.5;
+            }
+
+            100% {
+                width: 400px;
+                height: 400px;
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <script>
+        window.onload = () => {
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    // 计算点击位置
+                    // 结合button position=relative / span position=absolute，这里得到的位置为相对button的位置
+                    let x = e.offsetX;
+                    let y = e.offsetY;
+
+                    // 创建水波元素
+                    let ripple = document.createElement('span');
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    this.appendChild(ripple);
+
+                    // 水波扩散一定时间后删除
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 1000)
+                })
+            })
+        };
+    </script>
+</head>
+
+<body>
+    <button>BUTTON</button>
+    <button>BUTTON</button>
+</body>
+
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>边框跑马霓虹灯效按钮</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+    </style>
+
+    <style>
+        /* 全局色表 */
+        :root {
+            --color-bg: #202020;
+            --color-btn1: #f556e0;
+            --color-btn2: #5182f7;
+        }
+
+        body {
+            display: flex;
+            background: var(--color-bg);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            width: 200px;
+            height: 50px;
+            margin: 20px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            letter-spacing: 4px;
+            transition: 0.3s;
+            /* 倒影。通过遮罩透明度变化实现近处明亮远处黯淡的效果 */
+            -webkit-box-reflect: below 1px linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+        }
+
+        .btn:nth-child(1) {
+            color: var(--color-btn1);
+        }
+
+        .btn:nth-child(2) {
+            color: var(--color-btn2);
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+    </style>
+
+    <!-- 按钮悬停样式 -->
+    <style>
+        .btn:hover {
+            color: var(--color-bg);
+        }
+
+        .btn:nth-child(1):hover {
+            background: var(--color-btn1);
+            /* 多层阴影增加发光效果的层次感 */
+            box-shadow: 0 0 10px var(--color-btn1),
+                0 0 25px var(--color-btn1),
+                0 0 50px var(--color-btn1),
+                0 0 100px var(--color-btn1);
+        }
+
+        .btn:nth-child(2):hover {
+            background: var(--color-btn2);
+            box-shadow: 0 0 10px var(--color-btn2),
+                0 0 25px var(--color-btn2),
+                0 0 50px var(--color-btn2),
+                0 0 100px var(--color-btn2);
+        }
+    </style>
+
+    <!-- 边框跑马样式 -->
+    <style>
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn span {
+            position: absolute;
+            display: block;
+        }
+
+        /* 下面是各条边框位置与动画设置，通过位置和动画时间差实现跑马效果 */
+
+        .btn span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            animation: animate1 1s linear infinite;
+            animation-delay: 0s;
+        }
+
+        @keyframes animate1 {
+            0% {
+                left: -100%;
+            }
+
+            50%,
+            100% {
+                left: 100%;
+            }
+        }
+
+        .btn span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            animation: animate2 1s linear infinite;
+            animation-delay: 0.25s;
+        }
+
+        @keyframes animate2 {
+            0% {
+                top: -100%;
+            }
+
+            50%,
+            100% {
+                top: 100%;
+            }
+        }
+
+        .btn span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            animation: animate3 1s linear infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes animate3 {
+            0% {
+                right: -100%;
+            }
+
+            50%,
+            100% {
+                right: 100%;
+            }
+        }
+
+        .btn span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            animation: animate4 1s linear infinite;
+            animation-delay: 0.75s;
+        }
+
+        @keyframes animate4 {
+            0% {
+                bottom: -100%;
+            }
+
+            50%,
+            100% {
+                bottom: 100%;
+            }
+        }
+
+        /* 下面是各条边框颜色设置 */
+
+        .btn:nth-child(1) span:nth-child(1) {
+            background: linear-gradient(to right, transparent, var(--color-btn1));
+        }
+
+        .btn:nth-child(2) span:nth-child(1) {
+            background: linear-gradient(to right, transparent, var(--color-btn2));
+        }
+
+        .btn:nth-child(1) span:nth-child(2) {
+            background: linear-gradient(to bottom, transparent, var(--color-btn1));
+        }
+
+        .btn:nth-child(2) span:nth-child(2) {
+            background: linear-gradient(to bottom, transparent, var(--color-btn2));
+        }
+
+        .btn:nth-child(1) span:nth-child(3) {
+            background: linear-gradient(to left, transparent, var(--color-btn1));
+        }
+
+        .btn:nth-child(2) span:nth-child(3) {
+            background: linear-gradient(to left, transparent, var(--color-btn2));
+        }
+
+        .btn:nth-child(1) span:nth-child(4) {
+            background: linear-gradient(to top, transparent, var(--color-btn1));
+        }
+
+        .btn:nth-child(2) span:nth-child(4) {
+            background: linear-gradient(to top, transparent, var(--color-btn2));
+        }
+    </style>
+</head>
+
+<body>
+    <!-- button中四个span元素作为上下左右四条流动的边框 -->
+    <button class="btn">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        BUTTON
+    </button>
+    <button class="btn">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        BUTTON
+    </button>
+</body>
+
+</html>

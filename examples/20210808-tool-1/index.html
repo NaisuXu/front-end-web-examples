@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>文件转 DataURI Base64 数据工具</title>
+    <script>
+        var data = "";
+
+        function read(file) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                data = this.result; // 获取数据
+                document.getElementById("show").value = data;
+            };
+            reader.readAsDataURL(file); // 以DataURI Base64方式读取
+        }
+
+        function copy() {
+            navigator.clipboard.writeText(data).then(function () {
+                alert("复制成功！");
+            }, function () {
+                alert("复制失败！");
+            });
+        }
+    </script>
+</head>
+
+<body style="margin: 2rem;">
+    <h1>文件转 DataURI Base64 数据工具</h1>
+    <input type="file" onchange="read(this.files[0])" /><br>
+    <textarea id="show" style="overflow-y: scroll; width: 30rem; height: 15rem;"></textarea><br>
+    <button onclick="copy()">复制到剪贴板</button>
+</body>
+
+</html>

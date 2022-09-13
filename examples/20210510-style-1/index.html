@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        html,body {
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #e6e6e6;
+        }
+        .neumorphism {
+            width: 200px;
+            height: 75px;
+            border: none;
+            border-radius: 20px;
+            background-color: #e6e6e6;
+            box-shadow: 5px 5px 10px #bbbbbb, -5px -5px 10px #ffffff; 
+        }
+        .neumorphism:active {
+            box-shadow: inset 5px 5px 10px #bbbbbb, inset -5px -5px 10px #ffffff;
+        }
+        .neumorphism:focus {
+            outline: none;
+        }
+        .neumorphism span {
+            display: block;
+            user-select: none;
+            color: #a6a6a6;
+            font-size: 24px;
+            text-align: center;
+            line-height: 75px;
+            transition: 0.1s;
+        }
+        .neumorphism:active span {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <button class="neumorphism"><span>BUTTON</span></button>
+</body>
+</html>
