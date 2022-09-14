@@ -1,4 +1,7 @@
 const examplesList = {
+    "20220914-login-page": {
+        "descr": "带悬停动画登陆页面\nLogin page with hover animation"
+    },
     "20220913-background": {
         "descr": "粒子飘落效果动画背景\nParticle fall animation background"
     },

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>带悬停动画登陆页面</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+
+        /* 全局色表 */
+        :root {
+            --color-bg: #304050;
+            --color-bg-login: #34495D;
+            --color-text: #eeeeee;
+            --color-span: #907070;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+        }
+    </style>
+
+    <!-- 以下是登陆页面的基本样式 -->
+    <style>
+        .login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 20rem;
+            height: 28rem;
+            background: var(--color-bg-login);
+            border-radius: 1rem;
+            box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.1);
+        }
+
+        .login>h1 {
+            font-size: 3rem;
+            font-weight: normal;
+            color: var(--color-text);
+            margin: 1rem;
+            z-index: 1;
+        }
+
+        .login>input {
+            width: 12rem;
+            height: 2rem;
+            outline: none;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--color-text);
+            color: var(--color-text);
+            margin: 1rem;
+            z-index: 1;
+        }
+
+        .login>input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .login>button {
+            width: 10rem;
+            height: 2rem;
+            background: transparent;
+            outline: none;
+            border-radius: 1rem;
+            border: 2px solid var(--color-text);
+            color: var(--color-text);
+            margin: 1rem;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .login>button:active {
+            backdrop-filter: invert(100%);
+        }
+    </style>
+
+    <!-- 以下是动画部分样式 -->
+    <style>
+        .login {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 下面使用span元素作为动画载体 */
+        span {
+            position: absolute;
+            border-radius: 50%;
+            background-color: var(--color-span);
+            transform: translate(-50%, -50%);
+        }
+
+        /* 鼠标进入login时的动画 */
+        @keyframes mouseenter {
+            0% {
+                width: 0;
+                height: 0;
+            }
+
+            100% {
+                width: 80rem;
+                height: 80rem;
+            }
+        }
+
+        /* 鼠标离开login时的动画 */
+        @keyframes mouseleave {
+            0% {
+                width: 80rem;
+                height: 80rem;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login" id="login">
+        <h1>Login</h1>
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Password">
+        <button>Log In</button>
+    </div>
+
+    <script>
+        const login = document.querySelector("#login");
+        let span;
+        const animetime = 0.3; // 单边动画持续时间
+
+        // 鼠标从外部进入登陆框时动画
+        login.addEventListener("mouseenter", (e) => {
+            if (span) {
+                return;
+            }
+            // 当前没有span元素则新建并赋值绑定
+            span = document.createElement("span");
+            span.style.top = `${e.offsetY}px`;
+            span.style.left = `${e.offsetX}px`;
+            span.style.animation = `mouseenter ${animetime}s ease-in forwards`;
+            login.appendChild(span);
+        });
+
+        // 鼠标从登陆框退出时动画
+        login.addEventListener("mouseleave", (e) => {
+            if (!span) {
+                return;
+            }
+            // 当前有span元素才需要退出操作
+            span.style.top = `${e.offsetY}px`;
+            span.style.left = `${e.offsetX}px`;
+            span.style.animation = `mouseleave ${animetime}s ease-out forwards`;
+            // 动画结束后移除span元素
+            setTimeout(() => {
+                span.remove();
+                span = undefined;
+            }, animetime * 1000);
+        });
+    </script>
+</body>
+
+</html>
