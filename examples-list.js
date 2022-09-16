@@ -48,9 +48,9 @@ const examplesList = {
         "descr": "新拟物风格按钮\nNeumorphism style button"
     },
     "20200731-loading-anime": {
-        "descr": "...缩放加载动画\nLoading animation"
+        "descr": "对称圆弧旋转加载动画\nLoading animation"
     },
     "20200730-loading-anime": {
-        "descr": "对称圆弧旋转加载动画\nLoading animation"
+        "descr": "...缩放加载动画\nLoading animation"
     }
 }
