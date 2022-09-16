@@ -26,6 +26,9 @@ const examplesList = {
     "20220326-tool": {
         "descr": "十六进制字节数组转文件工具\nHex array to File tool"
     },
+    "20211122-tool": {
+        "descr": "盐酸与氢氧化钠溶液中和pH计算\nTitration of hydrochloric acid and sodium hydroxide solution"
+    },
     "20210808-tool-2": {
         "descr": "文件转十六进制数组工具\nFile to Hex array tool"
     },

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Naisu">
+    <title>盐酸与氢氧化钠溶液中和pH计算</title>
+    <style>
+        body {
+            font-size: 1.25rem;
+            display: grid;
+            grid-template-columns: 14rem 1fr 8rem;
+        }
+
+        span {
+            height: 1.5rem;
+            grid-column: 1 / 5;
+        }
+
+        h2 {
+            grid-column: 1 / 5;
+        }
+    </style>
+    <script>
+        function getEl(selectors) {
+            return document.querySelector(selectors);
+        }
+
+        let rgehc;
+        let rgehv;
+        let rgeohc;
+        let rgeohv;
+        let lblhc;
+        let lblhv;
+        let lblohc;
+        let lblohv;
+        let lblnewv;
+        let lblnewhc;
+        let lblnewnohc;
+        let lblph;
+
+        let hc = 0.10;
+        let hv = 0.00;
+        let ohc = 0.10;
+        let ohv = 0.00;
+
+        let newv = 0.00;
+        let newhc = 0.000000;
+        let newohc = 0.000000;
+        let ph = 7.00;
+
+        function cal() {
+            let newv = hv + ohv;
+
+            let oldhc = hc * hv;
+            let oldohc = ohc * ohv;
+
+            let dvalu = oldhc - oldohc;
+
+            if (Math.abs(dvalu) < Number.EPSILON) { // 完全中和
+                newhc = 0.000000;
+                newohc = 0.000000;
+                ph = 7.00;
+            } else if (dvalu > Number.EPSILON) { // H+ 多
+                newhc = dvalu / newv;
+                newohc = 0.000000;
+                ph = -Math.log10(newhc);
+            } else if (dvalu < -Number.EPSILON) { // OH+ 多
+                newhc = 0.000000;
+                newohc = (-dvalu) / newv;
+                ph = 14 + Math.log10(newohc);
+            }
+
+            lblnewv.innerText = `${newv.toFixed(2)} mL`;
+            lblnewhc.innerText = `${newhc.toFixed(6)} mol/L`;
+            lblnewnohc.innerText = `${newohc.toFixed(6)} mol/L`;
+            lblph.innerText = `${ph.toFixed(2)}`;
+        }
+
+        onload = () => {
+            rgehc = getEl('#rgehc');
+            rgehv = getEl('#rgehv');
+            rgeohc = getEl('#rgeohc');
+            rgeohv = getEl('#rgeohv');
+            lblhc = getEl('#lblhc');
+            lblhv = getEl('#lblhv');
+            lblohc = getEl('#lblohc');
+            lblohv = getEl('#lblohv');
+            lblnewv = getEl('#lblnewv');
+            lblnewhc = getEl('#lblnewhc');
+            lblnewnohc = getEl('#lblnewnohc');
+            lblph = getEl('#lblph');
+
+            rgehc.oninput = () => {
+                hc = Number(rgehc.value);
+                lblhc.innerText = ` ${hc.toFixed(2)} mol/L`;
+                cal();
+            }
+
+            rgehv.oninput = () => {
+                hv = Number(rgehv.value);
+                lblhv.innerText = ` ${hv.toFixed(2)} ml/L`;
+                cal();
+            }
+
+            rgeohc.oninput = () => {
+                ohc = Number(rgeohc.value);
+                lblohc.innerText = ` ${ohc.toFixed(2)} mol/L`;
+                cal();
+            }
+
+            rgeohv.oninput = () => {
+                ohv = Number(rgeohv.value);
+                lblohv.innerText = ` ${ohv.toFixed(2)} ml/L`;
+                cal();
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h2>盐酸与氢氧化钠溶液中和pH计算</h2>
+    <span></span>
+    <span>滚动条选中后可以使用键盘方向键微调</span>
+    <span></span>
+    <div>盐酸溶液浓度</div>
+    <input type="range" min="0.10" max="12.00" step="0.10" value="0.10" id="rgehc">
+    <div id="lblhc"> 0.10 mol/L</div>
+    <span></span>
+    <div>盐酸溶液体积</div>
+    <input type="range" min="0.00" max="100.00" step="0.05" value="0.00" id="rgehv">
+    <div id="lblhv"> 0.00 mL</div>
+    <span></span>
+    <div>氢氧化钠溶液浓度</div>
+    <input type="range" min="0.10" max="20.00" step="0.10" value="0.10" id="rgeohc">
+    <div id="lblohc"> 0.10 mol/L</div>
+    <span></span>
+    <div>氢氧化钠溶液体积</div>
+    <input type="range" min="0.00" max="100.00" step="0.05" value="0.00" id="rgeohv">
+    <div id="lblohv"> 0.00 mL</div>
+    <span></span>
+    <div>混合溶液体积为</div>
+    <div id="lblnewv">0.00 mL</div>
+    <span></span>
+    <div>混合溶液 H+ 浓度约为</div>
+    <div id="lblnewhc">0.000000 mol/L</div>
+    <span></span>
+    <div>混合溶液 OH- 浓度约为</div>
+    <div id="lblnewnohc">0.000000 mol/L</div>
+    <span></span>
+    <div>混合溶液pH值</div>
+    <div id="lblph">7.00</div>
+</body>
+
+</html>
