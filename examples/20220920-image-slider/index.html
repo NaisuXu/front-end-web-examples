@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>纯CSS自动图片轮播效果</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <!-- 以下是图片轮播窗口基本样式 -->
+    <style>
+        /* 该元素用于向用户展示图片 */
+        .image-slider {
+            width: 100vw;
+            height: 100vh;
+            /* 设置隐藏超出窗口部分 */
+            overflow: hidden;
+        }
+
+        /* 该元素里面用于排列所有的图片 */
+        .image-slider>div {
+            /* 这里的长宽影响内部子元素长宽 */
+            width: 100%;
+            height: 100%;
+            /* 设置相对定位时内部子元素可以以绝对定位实现水平排列 */
+            position: relative;
+            top: 0;
+            left: 0%;
+        }
+
+        .image-slider>div>span {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        .image-slider>div>span:nth-child(1) {
+            left: 0;
+            background-color: #B3E0B6;
+        }
+
+        /* 该元素内容为第一幅内容，位置上放在最后一副内容之后，用于最后一幅内容到第一幅内容的动画过度 */
+        .image-slider>div>span:nth-child(5) {
+            left: 400%;
+            background-color: #B3E0B6;
+        }
+
+        .image-slider>div>span:nth-child(2) {
+            left: 100%;
+            background-color: #F7B5B4;
+        }
+
+        .image-slider>div>span:nth-child(3) {
+            left: 200%;
+            background-color: #B2B0D5;
+        }
+
+        .image-slider>div>span:nth-child(4) {
+            left: 300%;
+            background-color: #F7E7B4;
+        }
+
+        .image-slider>div>span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12rem;
+            color: white;
+        }
+    </style>
+
+    <!-- 以下是图片轮播窗口动画样式 -->
+    <style>
+        .image-slider>div {
+            animation: image-slider-anime 15s ease infinite;
+        }
+
+        /* 下面设置中每一幅内容静态展示占20%动画总时间，幅与幅之间过度效果占5%动画总时间 */
+        @keyframes image-slider-anime {
+            0%,
+            20% {
+                left: 0%;
+            }
+
+            25%,
+            45% {
+                left: -100%;
+            }
+
+            50%,
+            70% {
+                left: -200%;
+            }
+
+            75%,
+            95% {
+                left: -300%;
+            }
+
+            100% {
+                left: -400%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-slider">
+        <div>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>1</span>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,4 +1,7 @@
 const examplesList = {
+    "20220920-image-slider": {
+        "descr": "纯CSS图片自动轮播效果\nAutomatic Image Slider with CSS"
+    },
     "20220914-login-page": {
         "descr": "带悬停动画登陆页面\nLogin page with hover animation"
     },
