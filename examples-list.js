@@ -1,4 +1,7 @@
 const examplesList = {
+    "20220922-text-marquee": {
+        "descr": "文本跑马灯效果\nText marquee effect"
+    },
     "20220920-image-slider": {
         "descr": "纯CSS图片自动轮播效果\nAutomatic Image Slider with CSS"
     },

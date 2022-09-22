@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>文本跑马灯效果</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eeeeee;
+        }
+    </style>
+
+    <style>
+        .marquee {
+            border-radius: 1rem;
+            background-color: #dddddd;
+            width: 40rem;
+            padding: 2rem;
+        }
+
+        .marquee>div {
+            overflow: hidden;
+        }
+
+        .marquee>div>p {
+            white-space: nowrap;
+            color: #333333;
+            /* 根据字体大小与文字内容下面文本长度约为70rem */
+            font-size: 2rem;
+            /* 根据父元素宽度和缩进设置，文本框长度为36rem */
+            transform: translateX(36rem);
+            animation: anime-marquee 10s linear infinite;
+        }
+
+        @keyframes anime-marquee {
+            0% {
+                transform: translateX(36rem);
+            }
+
+            100% {
+                transform: translateX(-70rem);
+            }
+        }
+    </style>
+
+    <!-- 使用渐变半透明元素作为遮罩实现文字淡入淡出效果 -->
+    <style>
+        .marquee>div {
+            position: relative;
+        }
+
+        .marquee>div>p {
+            z-index: 0;
+        }
+
+        .marquee>div::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4rem;
+            height: 100%;
+            background: linear-gradient(to right, #dddddd, transparent);
+            z-index: 1;
+        }
+
+        .marquee>div::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4rem;
+            height: 100%;
+            background: linear-gradient(to left, #dddddd, transparent);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="marquee">
+        <div>
+            <p>文本滚动效果。 Text scrolling effect. 文本跑马灯效果。Text marquee effect.</p>
+        </div>
+    </div>
+</body>
+
+</html>
