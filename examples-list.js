@@ -1,4 +1,7 @@
 const examplesList = {
+    "20220923-background": {
+        "descr": "动态彩色背景\nDynamic Colorful Background"
+    },
     "20220922-text-marquee": {
         "descr": "文本跑马灯效果\nText marquee effect"
     },
