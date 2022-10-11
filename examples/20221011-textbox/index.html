@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>文本动态组合</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #297a65;
+        }
+    </style>
+
+    <style>
+        .combination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 3rem;
+            overflow: hidden;
+
+            color: white;
+            font-size: 2rem;
+            line-height: 3rem;
+            text-align: center;
+        }
+
+        .combination>ul {
+            list-style: none;
+            animation: anime 7.5s linear infinite;
+        }
+
+        /* 下面设置中每次文本静态展示占20%动画总时间，每次过渡效果占5%动画总时间 */
+        @keyframes anime {
+
+            0%,
+            20% {
+                transform: translateY(3rem);
+            }
+
+            25%,
+            45% {
+                transform: translateY(0rem);
+            }
+
+            50%,
+            70% {
+                transform: translateY(-3rem);
+            }
+
+            75%,
+            95% {
+                transform: translateY(0rem);
+            }
+
+            100% {
+                transform: translateY(3rem);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="combination">
+        <div>[ Hello&nbsp</div>
+        <ul>
+            <li>World</li>
+            <li>Naisu</li>
+            <li>You</li>
+        </ul>
+        <div>&nbsp! ]</div>
+    </div>
+</body>
+
+</html>

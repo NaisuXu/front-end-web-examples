@@ -1,4 +1,7 @@
 const examplesList = {
+    "20221011-textbox": {
+        "descr": "文本动态组合\nText dynamic combination"
+    },
     "20220923-background": {
         "descr": "动态彩色背景\nDynamic Colorful Background"
     },
