@@ -1,4 +1,7 @@
 const examplesList = {
+    "20221012-background": {
+        "descr": "宣纸材质背景\nPaper material background"
+    },
     "20221011-textbox": {
         "descr": "文本动态组合\nText dynamic combination"
     },
