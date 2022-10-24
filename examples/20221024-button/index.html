@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>流光效果按钮</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #202020;
+        }
+    </style>
+
+    <style>
+        /* 全局色表 */
+        :root {
+            --color-1: #2486d8;
+            --color-2: #f84077;
+            --color-3: #fcd217;
+        }
+
+        button {
+            width: 280px;
+            height: 80px;
+            border-radius: 40px;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 32px;
+            text-align: center;
+            line-height: 80px;
+            letter-spacing: 4px;
+            font-family: sans-serif;
+            /* 渐变背景，首尾颜色要一样，以配合动画实现平滑过渡 */
+            background: linear-gradient(to right, var(--color-1), var(--color-2), var(--color-3), var(--color-1));
+            /* 拉长背景宽度*/
+            background-size: 600% 100%;
+        }
+
+        button:hover {
+            animation: anime 12s linear infinite;
+        }
+
+        /* 动画通过改变背景位置来改变显示出的颜色 */
+        @keyframes anime {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: -600% 0;
+            }
+        }
+
+        button {
+            position: relative;
+        }
+
+        /* ::before元素用户设置外发光效果 */
+        button::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: -5px;
+            bottom: -5px;
+            left: -5px;
+            right: -5px;
+            border-radius: 45px;
+            background: linear-gradient(to right, var(--color-1), var(--color-2), var(--color-3), var(--color-1));
+            background-color: #cad3c3;
+            background-size: 600% 100%;
+            filter: blur(15px);
+            opacity: 0;
+            transition: 1s;
+        }
+
+        button:hover::before {
+            animation: anime 12s linear infinite;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <button>BUTTON</button>
+</body>
+
+</html>

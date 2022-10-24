@@ -1,4 +1,7 @@
 const examplesList = {
+    "20221024-button": {
+        "descr": "流光效果按钮\nGlowing Gradient Button"
+    },
     "20221012-background": {
         "descr": "宣纸材质背景\nPaper material background"
     },
