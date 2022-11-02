@@ -1,4 +1,7 @@
 const examplesList = {
+    "20221102-dark-mode": {
+        "descr": "黑暗模式\nDark Mode"
+    },
     "20221024-button": {
         "descr": "流光效果按钮\nGlowing Gradient Button"
     },
