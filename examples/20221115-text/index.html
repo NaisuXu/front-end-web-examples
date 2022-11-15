@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>文字颜色渐变效果</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+
+    <style>
+        body {
+            position: relative;
+            background-color: #F2F3F7;
+        }
+
+        h1 {
+            /* 下面四行使文本水平垂直居中 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            letter-spacing: 0.25rem;
+        }
+
+        h1 {
+            /* 设置背景色渐变 */
+            background-image: linear-gradient(to right, #51D88F, #31BDD0);
+            /* 设置背景以文字进行裁切 */
+            background-clip: text;
+            -webkit-background-clip: text;
+            /* 设置文本颜色透明以露出后面裁切成文本形状的渐变背景 */
+            color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>文字颜色渐变<br>Text Gradient</h1>
+</body>
+
+</html>

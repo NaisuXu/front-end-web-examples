@@ -1,4 +1,7 @@
 const examplesList = {
+    "20221115-text": {
+        "descr": "文字颜色渐变效果\nText Gradient"
+    },
     "20221102-dark-mode": {
         "descr": "黑暗模式\nDark Mode"
     },
