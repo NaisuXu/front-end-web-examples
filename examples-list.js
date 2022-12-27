@@ -1,4 +1,7 @@
 const examplesList = {
+    "20221227-anime": {
+        "descr": "下雪动画\nSnowfall animation"
+    },
     "20221115-text": {
         "descr": "文字颜色渐变效果\nText Gradient"
     },

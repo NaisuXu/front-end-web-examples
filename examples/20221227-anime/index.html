@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>下雪动画 Snowfall animation</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+
+    <style>
+        .bg {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .bg>img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+    </style>
+
+    <style>
+        .snow-area {
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .snow-slice {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAADICAMAAAADQW+EAAABxVBMVEX////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////sayP7AAAAl3RSTlMAAgMFBwgKDA4PERQTGBcaFhweISMmKig1Ly4kPTknTB8zMSw4O0hAQkpHMkRSN05qPkZBZmBbUVVoXF9UbLdQZKh3gWNehXt+cmJ/gJV5WJRlblaSc5qTgm1ZsnCsq7C1cXWHjp+WuZd2ka6xs6G7uoiZfKO9nKCiiq2NhKZ6wIu0r8Kp0ce8htienb7DyMalzLjLj7a/RceXpwAAFu5JREFUGBntwQODI2nbsOHzulGM1bY9to21bTxcPDZf8/Pv/XZ3Zmca6U4lqUqqO3UcDAIJ1+v0m2kYMkeMkEbaOmQiEKKS2oQrJEt5OUOqOfW6JtOSrq4RkZq6PKJIliouuqSaGqpqMi3Z2XlDREMTLgkTx9ekmxgyETg54WgQMpnY+RNDmjSSkpA5vKZfPJejb0zg0lzx7qs5MoeXNz/q0jd2qSg0Vfjk3U0yh5mmf3ToCk2p42frQqY7YoqGzA7G0pK1DCBxy0QkJ083FJk2jZ26ahk8Zm3dEI1M3B4jWVaTaqIdRZvmr79W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");
+            background-repeat: repeat;
+            top: -100%;
+            opacity: 0;
+            overflow: hidden;
+            pointer-events: none;
+            /* transform-origin: 0% 0%; */
+            animation-name: snow-falling;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes snow-falling {
+            0% {
+                top: -100%;
+                opacity: 0;
+            }
+
+            1% {
+                top: -100%;
+                opacity: 1;
+            }
+
+            99.8% {
+                top: 100%;
+                opacity: 1;
+            }
+
+            99.9% {
+                opacity: 0;
+            }
+
+            100% {
+                top: -100%;
+                opacity: 0;
+            }
+        }
+
+        .snow-slice:nth-child(1) {
+            animation-delay: 0s;
+            animation-duration: 50s;
+            background-position: 10% 20%;
+        }
+
+        .snow-slice:nth-child(2) {
+            animation-delay: 25s;
+            animation-duration: 50s;
+            background-position: 40% 60%;
+        }
+
+        .snow-slice:nth-child(3) {
+            animation-delay: 0s;
+            animation-duration: 70s;
+            background-position: 90% 10%;
+            opacity: 0.5;
+        }
+
+        .snow-slice:nth-child(4) {
+            animation-delay: 35s;
+            animation-duration: 70s;
+            background-position: 50% 15%;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <img src="../../images/R0001452.webp" alt="">
+    </div>
+    <div class="snow-area">
+        <div class="snow-slice"></div>
+        <div class="snow-slice"></div>
+        <div class="snow-slice"></div>
+        <div class="snow-slice"></div>
+    </div>
+</body>
+
+</html>
