@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frost Effects</title>
+
+    <style>
+        * {
+            user-select: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .bg>img {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            object-fit: cover;
+            padding: 0px;
+            position: absolute;
+            width: 100%;
+
+        }
+
+        .effects.show {
+            opacity: 1;
+        }
+
+        .frost {
+            opacity: 0;
+            /* transition: all 0.5s ease-in-out 0s; */
+        }
+
+        .effects {
+            position: fixed;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            left: 0px;
+            top: 0px;
+            z-index: 700;
+            pointer-events: none;
+        }
+
+        .left.frame {
+            top: -133px;
+            left: 0px;
+            transform: rotate(90deg);
+            transform-origin: 0px 100px;
+            width: 500%;
+        }
+
+        .frost .frame {
+            background-image: url("./frost.img");
+            position: absolute;
+            height: 100px;
+            background-repeat: repeat-x;
+            background-size: contain;
+            background-position: center bottom;
+        }
+
+        .top.frame {
+            top: 0px;
+            width: 500%;
+            transform: rotate(180deg);
+        }
+
+        .right.frame {
+            top: 100%;
+            left: calc(100% - 100px);
+            transform: rotate(-90deg);
+            transform-origin: 0px 0px;
+            width: 500%;
+        }
+
+        .bottom.frame {
+            bottom: 0px;
+            left: 0px;
+            width: 500%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="bg">
+        <img src="./R0001242.webp" alt="">
+    </div>
+    <div class="frost effects show">
+        <div class="left frame"></div>
+        <div class="top frame"></div>
+        <div class="right frame"></div>
+        <div class="bottom frame"></div>
+    </div>
+</body>
+
+</html>
