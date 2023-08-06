@@ -1,6 +1,9 @@
 const examplesList = {
+    "20230806-decoration": {
+        "descr": "彩色灯珠装饰\nLight effects"
+    },
     "20230805-decoration": {
-        "descr": "霜冻效果\nFrost effects"
+        "descr": "霜冻效果装饰\nFrost effects"
     },
     "20221227-anime": {
         "descr": "下雪动画\nSnowfall animation"
