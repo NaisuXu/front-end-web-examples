@@ -1,4 +1,7 @@
 const examplesList = {
+    "20240401-background": {
+        "descr": "星辰流转背景\nStars effects"
+    },
     "20230806-decoration": {
         "descr": "彩色灯珠装饰\nLight effects"
     },
